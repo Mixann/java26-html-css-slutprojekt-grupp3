@@ -14,7 +14,12 @@ html {
 }
 main {
     font-size: 30px;
-
     display: inline;
     color: White;
+}
+img {
+    width: 5%;
+    background-color: white;
+    border-radius: 20px;
+    border-style: double;
 }

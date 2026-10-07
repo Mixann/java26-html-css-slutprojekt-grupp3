@@ -1,1 +1,20 @@
+html {
+    background: url(Grit-Garage.jpg) center / cover no-repeat fixed;
+}
 
+.mobile {
+    width: 100%;
+    height: 100%;
+    max-width: 390px;
+    margin: auto;
+    padding: 20p;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+main {
+    font-size: 30px;
+
+    display: inline;
+    color: White;
+}

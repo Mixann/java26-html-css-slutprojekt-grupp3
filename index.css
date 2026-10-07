@@ -1,5 +1,9 @@
-.index {
-    background: url(Grit-Garage.jpg) center / cover no-repeat fixed;
+html {
+    background: url(Grit-Garage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100%;
 }
 .mobile {
     width: 100%;
@@ -38,7 +42,7 @@ button:hover {
     scale:1.3;
 }
 .topnav {
-    position: absolute;
+    position:absolute;
     display: flex;
     top:5px;
     text-align: center;
@@ -47,22 +51,6 @@ button:hover {
     padding: 10px;
     gap: 10px;
 }
-.footer {
-    position: absolute;
-    display: flex;
-    bottom: 0px;
-    text-align: left;
-    color: white;
-    font-size: 20px;
-}
-.Genväg {
-    position: absolute;
-    display: flex;
-    text-align: center;
-    bottom: 5px;
-    margin: 10px;
-    gap: 10px;
-    padding: 10px;
-    font-size: 25px;
-    right: 5px;
+.oljebyte {
+  background-image: url("grit-garage-oljebyte.png")
 }

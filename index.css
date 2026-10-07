@@ -54,3 +54,15 @@ button:hover {
 .oljebyte {
   background-image: url("grit-garage-oljebyte.png")
 }
+
+.service {
+    background-image: url("grit-garage-service.png")
+}
+
+.dackbyte {
+    background-image: url("grit-garage-dackbyte.png")
+}
+
+.inspektion {
+    background-image: url("grit-garage-inspektion-reparation.png")
+}

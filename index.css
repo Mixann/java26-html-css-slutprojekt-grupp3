@@ -1,5 +1,9 @@
-.index {
-    background: url(Grit-Garage.jpg) center / cover no-repeat fixed;
+html {
+    background: url(Grit-Garage.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100%;
 }
 .mobile {
     width: 100%;
@@ -48,5 +52,5 @@ button:hover {
     gap: 10px;
 }
 .oljebyte {
-  background-image: url("grit-garage-oljebyte.png");
+  background-image: url("grit-garage-oljebyte.png")
 }

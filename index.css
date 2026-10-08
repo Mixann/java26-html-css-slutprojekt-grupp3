@@ -80,11 +80,15 @@ button:hover {
 .inspektion {
     background-image: url("grit-garage-inspektion-reparation.png")
 }
-
-.tjanster {
-display:flex;
-max-width: 900px;
-flex-wrap: wrap;
-margin: 40px auto;
-padding: 0 20px;
+.tjanster, .tjanst{
+    width: 50%;
+    gap: 10px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 0 20px;
+}
+@media screen and(min-width) {
+    
 }

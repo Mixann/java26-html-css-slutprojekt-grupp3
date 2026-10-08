@@ -13,7 +13,7 @@ main {
 }
 .GG {
     display: flex;
-    width: 10%;
+    width: 15%;
     background-color: white;
     border-radius: 10px;
     border-style: double;
@@ -81,14 +81,12 @@ button:hover {
     background-image: url("grit-garage-inspektion-reparation.png")
 }
 .tjanster, .tjanst{
-    width: 50%;
     gap: 10px;
     display:flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     margin: 10px;
     padding: 0 20px;
+    width: 50%;
 }
-@media screen and(min-width) {
-    
-}
+

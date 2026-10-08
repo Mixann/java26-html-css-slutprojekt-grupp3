@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GG - Boka tid</title>
+    <link rel="icon" type="image/x-icon" href="Grit-garage-favicon.png">
+    
+    <link rel="stylesheet" href="boka.css">
+</head>
+<body>
+
+<div class="booking-container">
+    <h2>Boka tid</h2>
+    
+    <form id="bookingForm">
+        <div class="form-group">
+            <label for="name">För- och efternamn</label>
+            <input type="text" id="name" required placeholder="Johan Olsson">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 10px;">
+            <label>Kontaktuppgifter</label>
+            <div class="requirement-note">Ange minst ett alternativ för bekräftelse och påminnelser:</div>
+        </div>
+        
+        <div class="form-group"><input type="email" id="email" placeholder="namn@exempel.se"></div>
+        <div class="form-group"><input type="tel" id="phone" placeholder="Telefonnummer (t.ex. 0701234567)"></div>
+
+        <div class="form-group" style="margin-top: 30px;">
+            <label for="service">Välj tjänst</label>
+            <select id="service" required>
+                <option value="" disabled selected>Välj en tjänst...</option>
+                <option value="Tjänst 1">Oljebyte</option>
+                <option value="Tjänst 2">Däckbyte</option>
+                <option value="Tjänst 3">Inspektion</option>
+                <option value="Tjänst 4">Tillfällig Tjänst 4</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="priceSection" style="margin-top: 10px; display: none; font-size: 1.1rem;">
+            <span style="color: #999; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Pris för tjänst:</span>
+            <span id="servicePrice" style="color: #fff; font-weight: bold; margin-left: 8px;">0 kr</span>
+        </div>
+
+        <div class="form-row" style="margin-top: 20px;">
+            <div class="form-group">
+                <label for="date">Datum</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="time">Tid</label>
+                <select id="time" required>
+                    <option value="" disabled selected>Välj datum först...</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" style="margin-top: 20px;">Bekräfta bokning</button>
+    </form>
+    
+    <div id="formMessage" class="message"></div>
+    
+    <footer>
+        <hr>
+        <p>
+            ©Grit Garage <br>
+            Telefon: 0720-334455 <br>
+            Mail: Gritgarage@hotmail.com
+        </p>
+        <div class="Genväg">
+            <a href="Hem.html">Hem</a>
+            <a href="Tjänster.html">Tjänster</a>
+            <a href="Om Oss.html">Om Oss</a>
+            <a href="Kontakt.html">Kontakta Oss</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    const OPENING_HOUR = 8;  
+    const CLOSING_HOUR = 20; 
+    const SLOT_DURATION_MINUTES = 30; 
+
+    const servicePrices = {
+        'Tjänst 1': '1 495 kr',  // Oljebyte
+        'Tjänst 2': '495 kr',   // Däckbyte
+        'Tjänst 3': '795 kr',   // Inspektion
+        'Tjänst 4': '0 kr'      // Tillfällig Tjänst 4
+    };
+
+    let bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || {};
+
+    const dateInput = document.getElementById('date');
+    const timeSelect = document.getElementById('time');
+    const bookingForm = document.getElementById('bookingForm');
+    const formMessage = document.getElementById('formMessage');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    
+    const serviceSelect = document.getElementById('service');
+    const priceSection = document.getElementById('priceSection');
+    const priceDisplay = document.getElementById('servicePrice');
+
+    serviceSelect.addEventListener('change', () => {
+        const selectedService = serviceSelect.value;
+        if (servicePrices[selectedService]) {
+            priceDisplay.textContent = servicePrices[selectedService];
+            priceSection.style.display = 'block'; // Visar fältet när en tjänst väljs
+        } else {
+            priceSection.style.display = 'none';
+        }
+    });
+
+    function setMinimumDate() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        dateInput.setAttribute('min', `${year}-${month}-${day}`);
+    }
+
+    function populateTimeSlots(selectedDateStr) {
+        timeSelect.innerHTML = ''; 
+        const today = new Date();
+        const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        
+        const isToday = selectedDateStr === todayStr;
+        const currentHour = today.getHours();
+        const currentMinute = today.getMinutes();
+        let slotsAvailable = false;
+        const dayBookings = bookedSlots[selectedDateStr] || [];
+
+        for (let hour = OPENING_HOUR; hour < CLOSING_HOUR; hour++) {
+            for (let min = 0; min < 60; min += SLOT_DURATION_MINUTES) {
+                const timeString = `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+                
+                if (isToday && (hour < currentHour || (hour === currentHour && min <= currentMinute))) {
+                    continue; 
+                }
+
+                const isBooked = dayBookings.includes(timeString);
+                const option = document.createElement('option');
+                option.value = timeString;
+                option.textContent = timeString;
+
+                if (isBooked) {
+                    option.disabled = true;
+                    option.textContent += ' (Upptagen)';
+                } else {
+                    slotsAvailable = true;
+                }
+                timeSelect.appendChild(option);
+            }
+        }
+
+        if (!slotsAvailable) {
+            const option = document.createElement('option');
+            option.value = ""; option.disabled = true; option.selected = true;
+            option.textContent = "Inga lediga tider";
+            timeSelect.appendChild(option);
+        } else {
+            const placeholder = document.createElement('option');
+            placeholder.value = ""; placeholder.disabled = true; placeholder.selected = true;
+            placeholder.textContent = "Välj tid...";
+            timeSelect.prepend(placeholder);
+        }
+    }
+
+    dateInput.addEventListener('change', (e) => populateTimeSlots(e.target.value));
+
+    bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const selectedDate = dateInput.value;
+        const selectedTime = timeSelect.value;
+        const selectedService = serviceSelect.value; // Hämtar vald tjänst vid skickat formulär
+
+        if (!email && !phone) {
+            showMessage('Valideringsfel: Ange e-post eller telefonnummer för bekräftelse.', 'error');
+            emailInput.focus();
+            return;
+        }
+
+        if (!selectedDate || !selectedTime) {
+            showMessage('Vänligen välj datum och tid.', 'error');
+            return;
+        }
+
+        if (!selectedService) {
+            showMessage('Vänligen välj en tjänst.', 'error');
+            return;
+        }
+
+        if (!bookedSlots[selectedDate]) bookedSlots[selectedDate] = [];
+
+        if (bookedSlots[selectedDate].includes(selectedTime)) {
+            showMessage('Tiden blev precis bokad! Välj en annan.', 'error');
+            populateTimeSlots(selectedDate);
+            return;
+        }
+
+        bookedSlots[selectedDate].push(selectedTime);
+        localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+
+        const selectedPrice = servicePrices[selectedService];
+        window.location.href = `konfirmation.html?name=${encodeURIComponent(name)}&date=${selectedDate}&time=${selectedTime}&service=${encodeURIComponent(selectedService)}&price=${encodeURIComponent(selectedPrice)}`;
+    });
+
+    function showMessage(text, type) {
+        formMessage.innerHTML = text;
+        formMessage.className = `message ${type}`;
+        formMessage.style.display = 'block';
+    }
+
+    setMinimumDate();
+</script>
+</body>
+</html>

@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box; /* padding räknas in i bredden, så inget sticker ut */
+}
 html {
     background: url(Grit-Garage.jpg);
     background-size: cover;
@@ -6,87 +9,86 @@ html {
     min-height: 100%;
     position: relative;
 }
-main {
-    font-size: 30px;
-    display: inline;
-    color: White;
+body {
+    margin:0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* header, main och footer hamnar under varandra */
+    font-family: Arial, sans-serif;
+    color: white;
+}
+.sidhuvud {
+    padding: 10px;
+}
+.sidhuvud-topp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .GG {
-    display: flex;
-    width: 15%;
+    display: block;
+    width: 90px;
     background-color: white;
     border-radius: 10px;
     border-style: double;
 }
-button {
-    transition: background-color 0.2s ease, scale 0.2s ease;
-    position: absolute;
-    display: flex;
-    right: 15px;
-    top: 0;
-    margin: 10px;
-    padding: 10px;
+.boka-knapp {
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.2s ease; transform 0.2s ease;
+
 }
-button:hover {
-    transform: scale(1.2);
-    background-color: #c3ff41;
-    scale:1.3;
+.boka-knapp:hover {
+    background-color:#c3ff41;
+    transform: scale(1.1);
 }
 .topnav {
-    position:absolute;
     display: flex;
-    top:5px;
-    text-align: center;
+    flex-wrap: wrap;
     justify-content: center;
-    max-width: 390px;
-    font-size: 25px;
-    margin: 10px;
-    padding: 10px;
+    gap:15px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+main {
+    flex:1; /* pushar ner footer längst ner på sidan */
+}
+.tjanster {
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    padding: 10px;
+}
+.tjanster a {
+    width: calc(50% - px); /* två länkar per rad */
+}
+.tjanst {
+    display: block;
     width: 100%;
-    height: 5%;
-    left: 765px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.sidfot {
+    display: flex;
+    flex-direction: column; /* info och genvägar under varandra på mobil */
+    gap:10px;
+    padding:15px;
 }
 .info {
-    display: flex;
-    position: absolute;
-    font-size: 20px;
-    bottom: 0px;
-    color: white;
-}
-.Genväg {
-    display: flex;
-    position: absolute;
-    text-align: center;
+    margin:0;
+    font-size: 16px;
     bottom: 5px;
-    right: 10px;
-    margin: 10px;
-    gap: 10px;
-    padding: 10px;
-    font-size: 25px;
 }
-.oljebyte {
-  background-image: url("grit-garage-oljebyte.png")
-}
-
-.service {
-    background-image: url("grit-garage-service.png")
+.Genvag {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:15px;
+    font-size: 16px;
 }
 
-.dackbyte {
-    background-image: url("grit-garage-dackbyte.png")
-}
-
-.inspektion {
-    background-image: url("grit-garage-inspektion-reparation.png")
-}
-.tjanster, .tjanst{
-    gap: 10px;
-    display:flex;
-    flex-direction: row;
-    flex-wrap:wrap;
-    margin: 10px;
-    padding: 0 20px;
-    width: 50%;
-}
-
+    

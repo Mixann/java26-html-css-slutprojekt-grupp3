@@ -1,5 +1,5 @@
 html {
-    background: url(Grit-Garage.jpg);
+    background-image: url(Grit-Garage.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,7 +10,7 @@ html {
     height: 100%;
     max-width: 390px;
     margin: auto;
-    padding: 20p;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -33,8 +33,11 @@ button {
     display: flex;
     right: 0px;
     top: 0;
+    width: 8%;
     margin: 30px;
-    padding: 10px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
 button:hover {
     transform: scale(1.2);
@@ -51,13 +54,22 @@ button:hover {
     padding: 10px;
     gap: 10px;
 }
+.topnav a{
+    color: #c3ff41;
+    padding: 10px;
+   font-weight:bold;
+    text-decoration: none;
+}
+.topnav a:hover{
+    color: white;
+}
 .info {
     display: flex;
     position: absolute;
     font-size: 20px;
     bottom: 0px;
     color: white;
-}
+} 
 .Genväg {
     display: flex;
     position: absolute;
@@ -65,10 +77,17 @@ button:hover {
     bottom: 5px;
     right: 10px;
     margin: 10px;
-    gap: 10px;
-    padding: 10px;
     font-size: 25px;
 }
+.Genväg a{
+    color: #c3ff41; 
+   padding: 10px; 
+   
+}
+.Genväg a:hover {
+  color: white;
+    }
+
 .oljebyte {
   background-image: url("grit-garage-oljebyte.png")
 }
@@ -84,3 +103,237 @@ button:hover {
 .inspektion {
     background-image: url("grit-garage-inspektion-reparation.png")
 }
+
+      /* Kontakta sidan */
+
+.main-kontakt {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    color: black;    
+}
+.kontakt-title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+    background: rgb(252, 247, 247);
+    padding: 8px 20px;
+    border-radius: 8px;
+    border-bottom: 10px solid #c3ff41;
+    width: auto;
+}
+.kontakt-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding-top: 25px;
+    text-align: center;
+    border: 4px solid white;
+    border-radius: 8px;
+    background-color: #d0fc76;
+}
+.col-title {
+    font-size: 30px;
+    border-bottom: 4px solid black;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    background: rgb(252, 247, 247); 
+}
+.form-group{
+margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 80px;
+    resize: none;
+}
+.map-link {
+    text-decoration: none;
+    display: block; 
+}
+.map-box {
+    width: 99%;
+    height: 250px;
+    color: white;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.map-box img.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: none;
+    border: none;
+    border-radius:0;
+}
+.map-overlay {
+    position: absolute;
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    background: #daf69e;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+.map-box:hover .map-overlay {
+    color: white;
+    background: black;
+}
+.info-line {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+.icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit:cover;
+    border: 1px solid black;
+    border-radius: 50%;  
+}
+
+     /* desktop */
+
+@media (max-width: 900px) {
+    .main-kontakt {
+        max-width: 90%;
+        padding: 25px 0;
+    }
+    .kontakt-col {
+        gap: 25px;
+        padding: 25px;
+    }
+    .kontakt-title {
+        font-size: 36px;
+    }
+    .col-title {
+        font-size: 26px;
+    }
+    .map-box {
+        width: 100%;
+    }
+    button{
+        margin: 20px;
+        padding:10px ;
+    }
+    .topnav a{
+        padding: 10px;
+       font-size: 24px;
+    }
+}
+
+    /* teblet */
+
+@media (max-width: 700px) {
+
+    .main-kontakt {
+        max-width: 94%;
+        padding: 20px 0;
+    }
+    .kontakt-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+    .kontakt-col {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 15px;
+    }
+    .col-title {
+        font-size: 24px;
+    }
+    .map-box {
+        width: 100%;
+        height: 220px;
+    }
+    button{
+        margin: 20px;
+        padding:10px;
+        font-size: 12px;
+        width: 5%;
+    }
+    .topnav a{
+        padding: 10px;
+       font-size: 24px;
+    }
+    .info-line {
+        font-size: 14px;
+        gap: 10px;
+    }
+    .submit-button {
+        width: 100%;
+    }
+}
+
+      /* mobil */
+
+@media (max-width: 600px) {
+    .main-kontakt {
+        max-width: 96%;
+    }
+    .kontakt-title {
+        font-size: 26px;
+    }
+    .kontakt-col {
+        padding: 12px;
+    }
+    .col-title {
+        font-size: 21px;
+    }
+    .map-box {
+        height: 190px;
+    }
+    button{
+        margin: 20px;
+        padding:10px;
+        width: 13%;
+    }
+    .topnav a{
+        padding: 5px;
+       font-size: 16px;
+    }
+    .site-footer {
+        gap: 20px;
+        padding: 20px;
+    }
+    .site-footer .info {
+        font-size: 12px;
+    }
+    .site-footer .Genväg {
+        font-size: 12px;
+        gap: 6px;
+    }
+}
+

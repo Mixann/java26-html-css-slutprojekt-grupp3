@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GG - Bokningsbekräftelse</title>
+    <link rel="icon" type="image/x-icon" href="Grit-garage-favicon.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 15px;
+            box-sizing: border-box;
+            min-height: 100vh;
+            width: 100%;
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.72)), 
+                              url('boka&konfirmation.png'); 
+            background-size: cover;          
+            background-position: center center;      
+            background-repeat: no-repeat;     
+            background-attachment: fixed;     
+            background-color: #0b0c10;
+
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+        .confirm-container {
+            background-color: rgba(20, 20, 22, 0.95);
+            padding: 35px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
+            width: 100%;
+            max-width: 460px;
+            border: 1px solid #2f3136;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .check-icon {
+            font-size: 48px;
+            color: #39ff14;
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #ffffff;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        p.intro-text {
+            color: #cccccc;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .info-box {
+            background-color: #25262b;
+            border: 1px solid #3f424a;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .info-row {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row strong {
+            color: #ffffff;
+            display: inline-block;
+            width: 90px;
+            font-weight: 700;
+        }
+
+        .info-row span {
+            color: #39ff14; 
+            font-weight: 600;
+        }
+
+        .btn-home {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #39ff14;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-home:hover {
+            background-color: #39ff14;
+            color: #000000;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+        }
+
+        footer hr {
+            border: 0;
+            border-top: 1px solid #2f3136;
+            margin: 25px 0 20px 0;
+        }
+
+        footer p {
+            margin: 0 0 15px 0;
+            font-size: 12px;
+            color: #888888;
+            line-height: 1.6;
+        }
+
+        .Genväg {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .Genväg a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        .Genväg a:hover {
+            color: #39ff14;
+        }
+
+        @media (max-width: 480px) {
+            .confirm-container {
+                padding: 25px 15px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="confirm-container">
+    <div class="check-icon">✓</div>
+    <h2>Bokning Bekräftad!</h2>
+    <p class="intro-text">Tack för din bokning. En påminnelse har skickats till de kontaktuppgifter du angav.</p>
+    
+    <div class="info-box">
+        <div class="info-row"><strong>Namn:</strong> <span id="displayName">-</span></div>
+        <div class="info-row"><strong>Datum:</strong> <span id="displayDate">-</span></div>
+        <div class="info-row"><strong>Tid:</strong> <span id="displayTime">-</span></div>
+    </div>
+
+    <a href="Hem.html" class="btn-home">Till startsidan</a>
+    
+    <footer>
+        <hr>
+        <p>
+            ©Grit Garage <br>
+            Telefon: 0720-334455 <br>
+            Mail: Gritgarage@hotmail.com
+        </p>
+        <div class="Genväg">
+            <a href="Hem.html">Hem</a>
+            <a href="Tjänster.html">Tjänster</a>
+            <a href="Om Oss.html">Om Oss</a>
+            <a href="Kontakt.html">Kontakta Oss</a>
+        </div>
+    </footer>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const name = urlParams.get('name');
+        const date = urlParams.get('date');
+        const time = urlParams.get('time');
+
+        if (name) document.getElementById('displayName').textContent = decodeURIComponent(name);
+        if (date) document.getElementById('displayDate').textContent = date;
+        if (time) document.getElementById('displayTime').textContent = time;
+    });
+</script>
+
+</body>
+</html>

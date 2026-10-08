@@ -84,3 +84,11 @@ button:hover {
 .inspektion {
     background-image: url("grit-garage-inspektion-reparation.png")
 }
+
+.tjanster {
+display:flex;
+max-width: 900px;
+flex-wrap: wrap;
+margin: 40px auto;
+padding: 0 20px;
+}

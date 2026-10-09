@@ -88,19 +88,21 @@
 .map-box { 
     width: 99%; 
     height: 250px; 
-    border: 1px solid #3cff41; 
     display: flex; 
     align-items: center; 
-    justify-content: center; 
-    border-radius: 8px; 
+    justify-content: center;  
     overflow: hidden; 
     position: relative; 
-    cursor: pointer; 
+    cursor: pointer;
+    padding: 10px;
+    padding-bottom: 15px; 
 }
 
 .map-box img.map-image { 
     width: 100%; 
     height: 100%; 
+    border: 2px solid #3cff41;
+    border-radius: 8px;
     object-fit: cover; 
 }
 
@@ -125,7 +127,7 @@
 
 .submit-button { 
     width: 44%; 
-    height: 50px;
+    height: 60px;
     background: black;
      color: white; 
      border: 2px solid #3cff41; 
@@ -165,13 +167,14 @@
     margin-bottom: 12px; }
 
 .icon-img { 
-    width: 20px; 
-    height: 20px; 
+    width: 30px; 
+    height: 30px; 
+    padding: 4px;
     object-fit: cover;
-     border: 3px solid #3cff41; 
+     border: 1px solid #3cff41; 
      border-radius: 50%; }
 
-/* tablet */
+
 
 
    /* Desktop */
@@ -324,22 +327,22 @@
 
     <div class="form-group">
     <label for="namn">Namn:</label>
-    <input type="text" id="namn" name="namn" placeholder="Ditt namn">
+    <input type="text" id="namn" name="namn" placeholder="Ditt namn" required>
         </div>                    
                             
     <div class="form-group">
     <label for="email">E-post:</label>
-    <input type="email" id="email"  name="email" placeholder="din.epost@example.com">
+    <input type="email" id="email"  name="email" placeholder="din.epost@example.com" required>
     </div>                       
                             
     <div class="form-group">
     <label for="amne">Ämne:</label>
-    <input type="text" id="amne" name="amne" placeholder="Ämne">
+    <input type="text" id="amne" name="amne" placeholder="Ämne" required>
     </div>                       
                        
     <div class="form-group">
     <label for="meddelande">Meddelande:</label>
-    <textarea id="meddelande" name="meddelande" placeholder="Beskriv vad vi kan hjälpa dig med..."></textarea>
+    <textarea id="meddelande" name="meddelande" placeholder="Beskriv vad vi kan hjälpa dig med..." required></textarea>
     </div>                    
                             
     <button class="submit-button" type="submit">Skicka meddelande </button>

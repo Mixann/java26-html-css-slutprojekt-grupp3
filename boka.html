@@ -11,6 +11,7 @@
 <body>
 
 <div class="booking-container">
+
     <h2>Boka tid</h2>
     
     <form id="bookingForm">
@@ -24,52 +25,66 @@
             <div class="requirement-note">Ange minst ett alternativ för bekräftelse och påminnelser:</div>
         </div>
         
-        <div class="form-group"><input type="email" id="email" placeholder="namn@exempel.se"></div>
+    <div class="form-group"><input type="email" id="email" placeholder="namn@exempel.se"></div>
         <div class="form-group"><input type="tel" id="phone" placeholder="Telefonnummer (t.ex. 0701234567)"></div>
 
-        <div class="form-group" style="margin-top: 30px;">
-            <label for="service">Välj tjänst</label>
-            <select id="service" required>
-                <option value="" disabled selected>Välj en tjänst...</option>
-                <option value="Tjänst 1">Oljebyte</option>
-                <option value="Tjänst 2">Däckbyte</option>
-                <option value="Tjänst 3">Inspektion</option>
-                <option value="Tjänst 4">Tillfällig Tjänst 4</option>
+        <div class="form-group" style="margin-top: 30px; position: relative;">
+    
+        <div class="custom-select-container" id="customSelect">
+        <div class="custom-select-trigger">
+        <span>Välj en tjänst...</span>
+        <span class="select-arrow">🡻</span>
+    </div>
+
+    <div class="custom-options">
+        <div class="custom-option" data-value="Tjänst 1"><span>Oljebyte</span><span class="price-tag">999 kr</span></div>
+        <div class="custom-option" data-value="Täckbyte"><span>Däckbyte</span><span class="price-tag">999 kr</span></div>
+        <div class="custom-option" data-value="Tjänst 3"><span>Inspektion</span><span class="price-tag">999 kr</span></div>
+        <div class="custom-option" data-value="Tjänst 4"><span>Service</span><span class="price-tag">999 kr</span></div>
+    </div>
+
+</div>
+
+        <input type="hidden" id="service" required>
+
+<div class="form-group" id="priceSection" style="margin-top: 10px; display: none; font-size: 1.1rem;">
+    <span style="color: #999; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Pris för tjänst:</span>
+    <span id="servicePrice" style="color: #fff; font-weight: bold; margin-left: 8px;">999 kr</span>
+</div>
+
+<div class="form-row" style="margin-top: 20px;">
+    <div class="form-group">
+        <label for="date">Datum</label>
+        <input type="date" id="date" required>
+</div>
+
+<div class="form-group">
+    <label for="time">Tid</label>
+        <div style="position: relative; width: 100%;">
+            <select id="time" required style="padding-right: 35px;">
+            <option value="" disabled selected>Välj datum först...</option>
             </select>
+            <span class="select-arrow" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%);">🡻</span>
         </div>
+    </div>
+</div>
 
-        <div class="form-group" id="priceSection" style="margin-top: 10px; display: none; font-size: 1.1rem;">
-            <span style="color: #999; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Pris för tjänst:</span>
-            <span id="servicePrice" style="color: #fff; font-weight: bold; margin-left: 8px;">0 kr</span>
-        </div>
 
-        <div class="form-row" style="margin-top: 20px;">
-            <div class="form-group">
-                <label for="date">Datum</label>
-                <input type="date" id="date" required>
-            </div>
-            <div class="form-group">
-                <label for="time">Tid</label>
-                <select id="time" required>
-                    <option value="" disabled selected>Välj datum först...</option>
-                </select>
-            </div>
-        </div>
+<button type="submit" style="margin-top: 20px;">Bekräfta bokning</button>
 
-        <button type="submit" style="margin-top: 20px;">Bekräfta bokning</button>
-    </form>
+</form>
     
-    <div id="formMessage" class="message"></div>
-    
+<div id="formMessage" class="message"></div>
     <footer>
         <hr>
-        <p>
+        <p> 
             ©Grit Garage <br>
             Telefon: 0720-334455 <br>
             Mail: Gritgarage@hotmail.com
         </p>
+
         <div class="Genväg">
-            <a href="Hem.html">Hem</a>
+            <a href="index.html">Hem</a>
             <a href="Tjänster.html">Tjänster</a>
             <a href="Om Oss.html">Om Oss</a>
             <a href="Kontakt.html">Kontakta Oss</a>
@@ -81,13 +96,6 @@
     const OPENING_HOUR = 8;  
     const CLOSING_HOUR = 20; 
     const SLOT_DURATION_MINUTES = 30; 
-
-    const servicePrices = {
-        'Tjänst 1': '1 495 kr',  // Oljebyte
-        'Tjänst 2': '495 kr',   // Däckbyte
-        'Tjänst 3': '795 kr',   // Inspektion
-        'Tjänst 4': '0 kr'      // Tillfällig Tjänst 4
-    };
 
     let bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || {};
 
@@ -102,25 +110,44 @@
     const priceSection = document.getElementById('priceSection');
     const priceDisplay = document.getElementById('servicePrice');
 
-    serviceSelect.addEventListener('change', () => {
-        const selectedService = serviceSelect.value;
-        if (servicePrices[selectedService]) {
-            priceDisplay.textContent = servicePrices[selectedService];
-            priceSection.style.display = 'block'; // Visar fältet när en tjänst väljs
-        } else {
-            priceSection.style.display = 'none';
-        }
-    });
+    const customSelect = document.getElementById('customSelect');
+const trigger = customSelect.querySelector('.custom-select-trigger');
+const hiddenInput = document.getElementById('service');
 
-    function setMinimumDate() {
+customSelect.addEventListener('click', (e) => {
+    customSelect.classList.toggle('open');
+});
+
+customSelect.querySelectorAll('.custom-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        
+        const value = option.getAttribute('data-value');
+        
+        trigger.innerHTML = option.innerHTML; 
+        
+        hiddenInput.value = value;
+        
+        customSelect.classList.remove('open');
+    });
+});
+
+document.addEventListener('click', (e) => {
+    if (!customSelect.contains(e.target)) {
+        customSelect.classList.remove('open');
+    }
+});
+
+
+        function setMinimumDate() {
         const today = new Date();
         const year = today.getFullYear();
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
         dateInput.setAttribute('min', `${year}-${month}-${day}`);
-    }
+        }
 
-    function populateTimeSlots(selectedDateStr) {
+        function populateTimeSlots(selectedDateStr) {
         timeSelect.innerHTML = ''; 
         const today = new Date();
         const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
@@ -132,27 +159,27 @@
         const dayBookings = bookedSlots[selectedDateStr] || [];
 
         for (let hour = OPENING_HOUR; hour < CLOSING_HOUR; hour++) {
-            for (let min = 0; min < 60; min += SLOT_DURATION_MINUTES) {
-                const timeString = `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
+        for (let min = 0; min < 60; min += SLOT_DURATION_MINUTES) {
+        const timeString = `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')}`;
                 
-                if (isToday && (hour < currentHour || (hour === currentHour && min <= currentMinute))) {
-                    continue; 
-                }
-
-                const isBooked = dayBookings.includes(timeString);
-                const option = document.createElement('option');
-                option.value = timeString;
-                option.textContent = timeString;
-
-                if (isBooked) {
-                    option.disabled = true;
-                    option.textContent += ' (Upptagen)';
-                } else {
-                    slotsAvailable = true;
-                }
-                timeSelect.appendChild(option);
-            }
+        if (isToday && (hour < currentHour || (hour === currentHour && min <= currentMinute))) {
+        continue; 
         }
+
+        const isBooked = dayBookings.includes(timeString);
+        const option = document.createElement('option');
+        option.value = timeString;
+        option.textContent = timeString;
+
+        if (isBooked) {
+        option.disabled = true;
+        option.textContent += ' (Upptagen)';
+        } else {
+        slotsAvailable = true;
+        }
+        timeSelect.appendChild(option);
+    }
+}
 
         if (!slotsAvailable) {
             const option = document.createElement('option');
@@ -176,7 +203,7 @@
         const phone = phoneInput.value.trim();
         const selectedDate = dateInput.value;
         const selectedTime = timeSelect.value;
-        const selectedService = serviceSelect.value; // Hämtar vald tjänst vid skickat formulär
+        const selectedService = serviceSelect.value;
 
         if (!email && !phone) {
             showMessage('Valideringsfel: Ange e-post eller telefonnummer för bekräftelse.', 'error');
@@ -207,15 +234,15 @@
 
         const selectedPrice = servicePrices[selectedService];
         window.location.href = `konfirmation.html?name=${encodeURIComponent(name)}&date=${selectedDate}&time=${selectedTime}&service=${encodeURIComponent(selectedService)}&price=${encodeURIComponent(selectedPrice)}`;
-    });
+        });
 
-    function showMessage(text, type) {
+        function showMessage(text, type) {
         formMessage.innerHTML = text;
         formMessage.className = `message ${type}`;
         formMessage.style.display = 'block';
     }
 
     setMinimumDate();
-</script>
-</body>
+    </script>
+  </body>
 </html>

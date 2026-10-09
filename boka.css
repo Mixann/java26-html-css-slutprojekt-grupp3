@@ -192,3 +192,99 @@ footer p {
         font-size: 22px;
     }
 }
+
+.custom-select-container {
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    background-color: #25262b;
+    border: 1px solid #3f424a;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* The top display bar */
+.custom-select-trigger {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-options {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background-color: #25262b;
+    border: 1px solid #3f424a;
+    border-radius: 6px;
+    display: none; 
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+}
+
+.custom-select-container:focus,
+.custom-select-container.open {
+    border-color: #39ff14;
+    outline: none;
+}
+
+.custom-select-container.open .custom-options {
+    display: block;
+}
+
+.custom-option {
+    padding: 12px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;     
+    align-items: center;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #2f3136;
+}
+
+
+.custom-option:last-child {
+    border-bottom: none;
+}
+
+.custom-option:hover {
+    background-color: #3f424a;
+}
+
+.price-tag {
+    color: #dadbdaad !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+    margin-left: 0 !important;
+    display: inline-block !important;
+}
+
+.custom-select-trigger, .form-group select {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    position: relative;
+}
+
+.select-arrow, select#time {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+
+.select-arrow {
+    font-size: 11px !important;
+    font-weight: 300 !important;
+    color: #666666 !important;
+    pointer-events: none !important;
+}

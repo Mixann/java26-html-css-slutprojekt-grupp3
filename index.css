@@ -43,7 +43,7 @@ body {
 
 }
 .boka-knapp:hover {
-    background-color:#c3ff41;
+    background-color:#3cff41;
     transform: scale(1.1);
 }
 .topnav {
@@ -55,7 +55,7 @@ body {
     font-size: 18px;
 }
 .topnav a{
-    color: #c3ff41;
+    color: #3cff41;
     padding: 15px;
     font-weight: bold;
     font-size: 25px;
@@ -102,7 +102,7 @@ main {
     font-size: 16px;
 }
 .Genvag a{
-   color: #c3ff41;
+   color: #3cff41;
     padding: 10px;
     font-weight: bold;
     font-size: 20px;   

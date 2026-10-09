@@ -20,7 +20,7 @@ body {
 .sidhuvud {
     padding: 10px;
 }
-.sidhuvud-topp{
+.sidhuvud-topp {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,18 +33,25 @@ body {
     border-style: double;
 }
 .boka-knapp {
-    padding: 10px 20px;
-    background-color: white;
+    padding: 5px;
     color: black;
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease; 
+}/* raden säger till webbläsaren att animera förändring över 0.2s (ease börjar långsamt så att det känns som en naturlig animering)  */
 
-}
 .boka-knapp:hover {
     background-color:#3cff41;
     transform: scale(1.1);
+}
+button {
+    width: 70px;
+    height: 40px;
+    border-style: solid;
+    border-color: #8a8a8a;
+    border-width: 3px;
+    border-radius: 5px;
 }
 .topnav {
     display: flex;
@@ -59,12 +66,11 @@ body {
     padding: 15px;
     font-weight: bold;
     font-size: 25px;
-    text-decoration: none;
+    text-decoration: none; /* tar bort understrykning på länkarna */
 }
-.topnav a:hover{
+.topnav a:hover {
     color: white;
 }
-
 main {
     flex:1; /* pushar ner footer längst ner på sidan */
 }
@@ -107,8 +113,8 @@ main {
     font-weight: bold;
     font-size: 20px;   
 }
-.Genvag a:hover{
- color: white;
+.Genvag a:hover {
+    color: white;
 }
 
 

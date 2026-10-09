@@ -33,18 +33,24 @@ body {
     border-style: double;
 }
 .boka-knapp {
-    padding: 10px 20px;
-    background-color: white;
+    padding: 5px;
     color: black;
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
     transition: background-color 0.2s ease, transform 0.2s ease;
-
 }
 .boka-knapp:hover {
-    background-color:#c3ff41;
+    background-color:#6c9e01;
     transform: scale(1.1);
+}
+button {
+    width: 70px;
+    height: 40px;
+    border-style: solid;
+    border-color: #8a8a8a;
+    border-width: 3px;
+    border-radius: 5px;
 }
 .topnav {
     display: flex;
@@ -64,7 +70,6 @@ body {
 .topnav a:hover{
     color: white;
 }
-
 main {
     flex:1; /* pushar ner footer längst ner på sidan */
 }

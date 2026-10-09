@@ -42,7 +42,7 @@ body {
 }/* raden säger till webbläsaren att animera förändring över 0.2s (ease börjar långsamt så att det känns som en naturlig animering)  */
 
 .boka-knapp:hover {
-    background-color:#6c9e01;
+    background-color:#3cff41;
     transform: scale(1.1);
 }
 button {
@@ -61,8 +61,8 @@ button {
     margin-top: 10px;
     font-size: 18px;
 }
-.topnav a {
-    color: #c3ff41;
+.topnav a{
+    color: #3cff41;
     padding: 15px;
     font-weight: bold;
     font-size: 25px;
@@ -107,8 +107,8 @@ main {
     gap:15px;
     font-size: 16px;
 }
-.Genvag a {
-    color: #c3ff41;
+.Genvag a{
+   color: #3cff41;
     padding: 10px;
     font-weight: bold;
     font-size: 20px;   

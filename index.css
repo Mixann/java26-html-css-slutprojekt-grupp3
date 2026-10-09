@@ -58,6 +58,10 @@ button {
     flex-wrap: wrap;
     justify-content: center;
     gap:15px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* centrerar navbaren till mitten av sidan */
     margin-top: 10px;
     font-size: 18px;
 }
@@ -67,6 +71,8 @@ button {
     font-weight: bold;
     font-size: 25px;
     text-decoration: none; /* tar bort understrykning på länkarna */
+    -webkit-text-stroke-width: 1.5px; /* kontur runt texten på navbar */
+    -webkit-text-stroke-color: black;
 }
 .topnav a:hover {
     color: white;

@@ -20,7 +20,7 @@ body {
 .sidhuvud {
     padding: 10px;
 }
-.sidhuvud-topp{
+.sidhuvud-topp {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,14 +61,14 @@ button {
     margin-top: 10px;
     font-size: 18px;
 }
-.topnav a{
+.topnav a {
     color: #c3ff41;
     padding: 15px;
     font-weight: bold;
     font-size: 25px;
-    text-decoration: none;
+    text-decoration: none; /* tar bort understrykning på länkarna */
 }
-.topnav a:hover{
+.topnav a:hover {
     color: white;
 }
 main {
@@ -107,14 +107,14 @@ main {
     gap:15px;
     font-size: 16px;
 }
-.Genvag a{
-   color: #c3ff41;
+.Genvag a {
+    color: #c3ff41;
     padding: 10px;
     font-weight: bold;
     font-size: 20px;   
 }
-.Genvag a:hover{
- color: white;
+.Genvag a:hover {
+    color: white;
 }
 
 
